@@ -52,53 +52,26 @@ service.interceptors.response.use(
     if (reqConfig.isDownLoadFile) {
       return res
     }
-    const code= res.status
-    const msg= res.data.message
     // const {  code, isNeedUpdateToken, updateToken } = res.data
     //update token
     // if (isNeedUpdateToken) {
     //   setToken(updateToken)
     // }
-    console.log("msg---: ",msg)
+    const code= res.status
     const successCode = '200,201,202,203,204'
     if (successCode.includes(code)) {
       //业务成功处理
       return res.data
-    } else {
-      //业务失败处理
-      if (code === 403) {
-        ElMessageBox.confirm('请重新登录', {
-          confirmButtonText: '重新登录',
-          cancelButtonText: '取消',
-          showCancelButton: false,
-          type: 'warning'
-        }).then(() => {
-          store.dispatch('user/resetToken').then(() => {
-            location.reload()
-            //direct return
-            return Promise.reject(res.data)
-          })
-        })
-      }
-      //是否需要提示错误信息 isAlertErrorMsg:true 提示
-      if (reqConfig.isAlertErrorMsg) {
-        ElMessage({
-          message: msg,
-          type: 'error',
-          duration: 2 * 1000
-        })
-      }
-      //返回错误信息
-      //如果未catch 走unhandledrejection进行收集
-      //注：如果没有return 则，会放回到请求方法中.then ,返回的res为 undefined
-      return Promise.reject(res.data)
     }
   },
   (err) => {
+    // console.log("err---->: ",err)
+    // console.log("err.response?.status---->: ",err.response?.status)
+    // console.log("err.response?.data.message---->: ",err.response?.data.message)
     /*http错误处理，处理跨域，404，401，500*/
     if (loadingE) loadingE.close()
     ElMessage({
-      message: err,
+      message: err.response?.data.message,
       type: 'error',
       duration: 2 * 1000
     })

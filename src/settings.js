@@ -1,7 +1,7 @@
 const setting = {
   /*page layout related*/
   //sideBar or navbar show title
-  title: 'Vue3 Admin Plus',
+  title: 'Panel',
   /**
    * @type {boolean} true | false
    * @description Whether show the logo in sidebar

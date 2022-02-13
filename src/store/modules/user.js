@@ -58,7 +58,7 @@ const actions = {
           if (rolesArr) {
             data.roles = JSON.parse(rolesArr)
           } else {
-            data.roles = data.role
+            data.roles = [data.role]
             localStorage.setItem('roles', JSON.stringify(data.roles))
           }
           const { roles, username } = data
