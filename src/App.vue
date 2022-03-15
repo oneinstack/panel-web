@@ -1,6 +1,6 @@
 <template>
-  <router-view />
-  <div v-if="settings.showVersionInfo" class="show-version-container">
+    <router-view />
+    <div v-if="settings.showVersionInfo" class="show-version-container">
     {{ showVersionInfo }}
   </div>
 </template>
@@ -18,7 +18,6 @@ onBeforeMount(() => {
   //set tmp token when setting isNeedLogin false
   if (!settings.value.isNeedLogin) setToken(settings.value.tmpToken)
 })
-
 const showVersionInfo = computed(() => {
   return `v${packageJson.version}-${GLOBAL_VAR.GIT_COMMIT_ID}`
 })

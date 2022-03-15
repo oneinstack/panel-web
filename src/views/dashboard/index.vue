@@ -4,6 +4,8 @@
     <Editor v-if="roles.includes('Editor')" />
     <ReadOnly v-else />
   </div>
+
+  
 </template>
 
 <script setup>

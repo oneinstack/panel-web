@@ -31,9 +31,9 @@ const actions = {
     return new Promise((resolve, reject) => {
       loginReq(data)
         .then((res) => {
-          if (true) {
+          if (res.data.token.length>0) {
             //commit('SET_Token', res.data?.jwtToken)
-            setToken(res.token)
+            setToken(res.data.token)
             resolve()
           } else {
             reject(res)
@@ -49,7 +49,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       getInfoReq()
         .then((response) => {
-          const data = response
+          const data = response.data
           if (!data) {
             return reject('Verification failed, please Login again.')
           }
@@ -58,7 +58,7 @@ const actions = {
           if (rolesArr) {
             data.roles = JSON.parse(rolesArr)
           } else {
-            data.roles = [data.role]
+            // data.roles = [data.role]
             localStorage.setItem('roles', JSON.stringify(data.roles))
           }
           const { roles, username } = data

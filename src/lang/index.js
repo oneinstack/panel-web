@@ -6,8 +6,6 @@ import { createI18n } from 'vue-i18n'
 // import elementJaLocale from 'element-plus/es/locale/lang/ja' // element-ui lang
 import enLocale from './en'
 import zhLocale from './zh'
-import esLocale from './es'
-import jaLocale from './ja'
 import settings from '@/settings'
 
 const messages = {
@@ -18,14 +16,6 @@ const messages = {
   zh: {
     ...zhLocale
     // ...elementZhLocale
-  },
-  es: {
-    ...esLocale
-    // ...elementEsLocale
-  },
-  ja: {
-    ...jaLocale
-    /* ...elementJaLocale*/
   }
 }
 

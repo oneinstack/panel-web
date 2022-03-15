@@ -8,10 +8,10 @@ export function searchUser(name) {
   })
 }
 
-export function transactionList(query) {
-  return request({
-    url: '/vue3-admin-plus/transaction/list',
-    method: 'get',
-    params: query
-  })
-}
+// export function transactionList(query) {
+//   return request({
+//     url: '/vue3-admin-plus/transaction/list',
+//     method: 'get',
+//     params: query
+//   })
+// }

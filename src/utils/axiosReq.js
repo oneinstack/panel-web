@@ -55,19 +55,17 @@ service.interceptors.response.use(
     // const {  code, isNeedUpdateToken, updateToken } = res.data
     //update token
     // if (isNeedUpdateToken) {
-    //   setToken(updateToken)
+    //   setToken(u pdateToken)
     // }
+    // res.setHeader('Access-Control-Expose-Headers') = "total-pages"
     const code= res.status
     const successCode = '200,201,202,203,204'
     if (successCode.includes(code)) {
       //业务成功处理
-      return res.data
+      return res
     }
   },
   (err) => {
-    // console.log("err---->: ",err)
-    // console.log("err.response?.status---->: ",err.response?.status)
-    // console.log("err.response?.data.message---->: ",err.response?.data.message)
     /*http错误处理，处理跨域，404，401，500*/
     if (loadingE) loadingE.close()
     ElMessage({
@@ -110,7 +108,7 @@ export function axiosReq({
     isDownLoadFile: isDownLoadFile ?? false,
     isAlertErrorMsg: isAlertErrorMsg ?? true,
     baseURL: baseURL ?? import.meta.env.VITE_APP_BASE_URL, // 设置基本基础url
-    timeout: timeout ?? 15000 // 配置默认超时时间
+    timeout: timeout ?? 15000, // 配置默认超时时间
   })
 }
 export default axiosReq

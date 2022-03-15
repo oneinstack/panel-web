@@ -26,7 +26,7 @@
             v-model="formInline.password"
             :type="passwordType"
             name="password"
-            placeholder="password(123456)"
+            placeholder="password(pontus123456)"
             @keyup.enter="handleLogin"
           />
           <span class="show-pwd" @click="showPwd">
@@ -52,7 +52,7 @@ const formRules = useElement().formRules
 //form
 let formInline = reactive({
   username: 'admin',
-  password: '123456'
+  password: 'pontus123456'
 })
 let state = reactive({
   otherQuery: {},

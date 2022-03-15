@@ -21,7 +21,6 @@ app.use(ElementPlus, {
 //i18n
 import i18n from '@/lang'
 app.use(i18n)
-
 //global mixin
 // import elementMixin from '@/mixins/elementMixin'
 // app.mixin(elementMixin)

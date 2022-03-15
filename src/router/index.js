@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import Layout from '@/layout'
 
 /* Router Modules */
-import chartsRouter from './modules/charts'
+// import chartsRouter from './modules/charts'
 
 export const constantRoutes = [
   {
@@ -42,220 +42,82 @@ export const constantRoutes = [
         component: () => import('@/views/dashboard/index.vue'),
         //using el svg icon, the elSvgIcon first when at the same time using elSvgIcon and icon
         meta: { title: 'Dashboard', elSvgIcon: 'Fold' }
+      },
+    ]
+  },
+  {
+    path: '/devops',
+    component: Layout,
+    meta: { title: 'devops', elSvgIcon: 'Tools' },
+    children: [
+      {
+        path: 'env',
+        name: 'Env',
+        component: () => import('@/views/devops/env.vue'),
+        meta: { title: '环境配置', role: 'admin', elSvgIcon: 'Fold'}
+      },
+      {
+            path: 'configKey',
+            name: 'configKey',
+            component: () => import('@/views/devops/key.vue'),
+            meta: { title: 'Key配置', elSvgIcon: 'Fold'}
+      },
+      {
+            path: 'configGlobal',
+            name: 'configGlobal',
+            component: () => import('@/views/devops/global.vue'),
+            meta: { title: '全局配置', role: 'admin', elSvgIcon: 'Fold'}
+      },
+      {
+        path: 'groups',
+        name: 'Groups',
+        component: () => import('@/views/devops/groups.vue'),
+        meta: { title: '项目组配置', role: 'admin', elSvgIcon: 'Fold'}
+      },
+      {
+        path: 'credentials',
+        name: 'Credentials',
+        component: () => import('@/views/devops/credentials.vue'),
+        meta: { title: '凭据配置', role: 'admin', elSvgIcon: 'Fold'}
       }
     ]
   },
   {
-    path: '/setting-switch',
+    path: '/projects',
     component: Layout,
+    meta: { title: 'projects',  elSvgIcon: 'Wallet'},
     children: [
       {
-        path: 'index',
-        component: () => import('@/views/setting-switch'),
-        name: 'SettingSwitch',
-        meta: { title: 'Setting Switch', icon: 'example' }
-      }
-    ]
-  },
-  {
-    path: '/error-log',
-    component: Layout,
-    name: 'ErrorLog',
-    redirect: '/error-log/list',
-    meta: { title: 'ErrorLog', icon: 'bug' },
-    children: [
-      {
-        path: 'list',
-        component: () => import('@/views/error-log'),
-        name: 'ErrorLog',
-        meta: { title: 'ErrorLog' }
+        path: '/project',
+        name: 'project',
+        component: () => import('@/views/projects/projects.vue'),
+        meta: { title: '服务管理', role: 'admin', elSvgIcon: 'Fold'}
       },
       {
-        path: 'error-log-test',
-        component: () => import('@/views/error-log/ErrorLogTest.vue'),
-        name: 'ErrorLogTest',
-        meta: { title: 'ErrorLog Test' }
-      }
-    ]
-  },
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: 'nested'
-    },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index.vue'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1/index.vue'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2/index.vue'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1/index.vue'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2/index.vue'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3/index.vue'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index.vue'),
-        name: 'Menu2',
-        meta: { title: 'menu2' }
-      }
-    ]
-  },
-  {
-    path: '/external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'https://github.com/jzfai/vue3-admin-plus.git',
-        meta: { title: 'ExternalLink', icon: 'link' }
-      }
-    ]
-  },
-  chartsRouter,
-  {
-    path: '/crud',
-    component: Layout,
-    meta: { title: 'CRUD', icon: 'guide' },
-    alwaysShow: true,
-    children: [
-      {
-        path: 'crud',
-        component: () => import('@/views/crud'),
-        name: 'crud',
-        meta: { title: 'CRUD-Demo' }
-      },
-      {
-        path: 'import-export',
-        component: () => import('@/views/crud/Vci.vue'),
-        name: 'ImportExport',
-        meta: { title: 'Import Export' }
-      },
-      {
-        path: 'img-address-packing',
-        component: () => import('@/views/crud/ImgAddressPacking.vue'),
-        name: 'ImgAddressPacking',
-        meta: { title: 'ImgAdd Pack' }
-      }
-    ]
-  },
-  {
-    path: '/writing-demo',
-    component: Layout,
-    meta: { title: 'Writing Demo', icon: 'eye-open' },
-    alwaysShow: true,
-    children: [
-      {
-        path: 'hook',
-        component: () => import('@/views/example/hook/Hook.vue'),
-        name: 'Hook',
-        meta: { title: 'Hook-Demo' }
-      },
-      {
-        path: 'vuex-use',
-        component: () => import('@/views/example/vuex-use/VuexUse.vue'),
-        name: 'VuexUse',
-        meta: { title: 'Vuex-Demo' }
-      },
-      {
-        path: 'mock-test',
-        component: () => import('@/views/example/mock-test/MockTest.vue'),
-        name: 'MockTest',
-        meta: { title: 'Mock-Demo' }
-      },
-      {
-        path: 'svg-icon',
-        component: () => import('@/views/example/svg-icon/SvgIcon.vue'),
-        name: 'SvgIcon',
-        meta: { title: 'Svg-Demo' }
-      },
-      {
-        path: 'parent-children',
-        component: () => import('@/views/example/parent-children/Parent.vue'),
-        name: 'Parent',
-        meta: { title: 'Parent-Children' }
-      },
-      {
-        path: 'keep-alive',
-        component: () => import('@/views/example/keep-alive'),
-        name: 'KeepAlive',
-        //cachePage: cachePage when page enter, default false
-        //leaveRmCachePage: remove cachePage when page leave, default false
-        meta: { title: 'Keep-Alive', cachePage: true, leaveRmCachePage: false }
-      },
-      {
-        path: 'router-demo-f',
-        name: 'routerDemoF',
+        path: '/projectDetail/:id',
         hidden: true,
-        component: () => import('@/views/example/keep-alive/RouterDemoF.vue'),
-        meta: { title: 'RouterDemo-F', cachePage: true, activeMenu: '/writing-demo/keep-alive' }
+        name: 'projectDetail',
+        component: () => import('@/views/projects/projectDetail.vue'),
+        meta: { title: '服务详情', activeMenu: '/project'}
       },
       {
-        path: 'router-demo-s',
-        name: 'routerDemoS',
-        hidden: true,
-        component: () => import('@/views/example/keep-alive/RouterDemoS.vue'),
-        meta: { title: 'RouterDemo-S', cachePage: true, activeMenu: '/writing-demo/keep-alive' }
+        path: '/projectDeployment',
+        name: 'projectDeployment',
+        component: () => import('@/views/projects/projectDeployment.vue'),
+        meta: { title: '服务发布', role: 'admin',activeMenu: '/projectDeployment', elSvgIcon: 'Fold'}
       }
     ]
   },
   {
-    path: '/use-example',
+    path: '/setting',
     component: Layout,
-    meta: { title: 'Use Example', icon: 'documentation' },
-    alwaysShow: true,
+    meta: { title: 'setting', elSvgIcon: 'Setting' },
     children: [
-      // {
-      //   path: 'tinymce',
-      //   component: () => import('@/views/use-example/tinymce-example/TinymceExample.vue'),
-      //   name: 'Tinymce',
-      //   meta: { title: 'Tinymce', icon: 'documentation' }
-      // },
       {
-        path: 'i18n-demo',
-        component: () => import('@/views/use-example/i18n/I18n-Demo.vue'),
-        name: 'I18nDemo',
-        meta: { title: 'I18n-Demo', icon: 'documentation' }
-      },
-      {
-        path: 'd3',
-        component: () => import('@/views/use-example/d3/D3.vue'),
-        name: 'D3',
-        meta: { title: 'd3-force', icon: 'documentation' }
+        path: 'user',
+        component: () => import('@/views/setting/usersetting.vue'),
+        name: 'user',
+        meta: { title: 'user', elSvgIcon: 'User' }
       }
     ]
   }
@@ -272,10 +134,11 @@ export const asyncRoutes = [
     redirect: '/permission/page',
     alwaysShow: true, // will always show the root menu
     name: 'Permission',
+    hidden: true,
     meta: {
       title: 'Permission',
       icon: 'lock',
-      roles: ['Admin', 'Editor'] // you can set roles in root nav
+      roles: ['admin', 'editor'] // you can set roles in root nav
     },
     children: [
       {
@@ -293,7 +156,7 @@ export const asyncRoutes = [
         name: 'PagePermission',
         meta: {
           title: 'Page Permission',
-          roles: ['Admin'] // or you can only set roles in sub nav
+          roles: ['admin'] // or you can only set roles in sub nav
         }
       },
       {

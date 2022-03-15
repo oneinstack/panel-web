@@ -19,15 +19,15 @@
 </template>
 
 <script setup>
-import { transactionList } from '@/api/remote-search'
+// import { transactionList } from '@/api/remote-search'
 import { toRefs, reactive, onBeforeMount } from 'vue'
 
 const state = reactive({
   list: []
 })
-onBeforeMount(() => {
-  fetchData()
-})
+// onBeforeMount(() => {
+//   fetchData()
+// })
 const statusFilter = (status) => {
   const statusMap = {
     success: 'success',
@@ -41,11 +41,11 @@ const toThousandFilter = (num) => {
 const orderNoFilter = (str) => {
   return
 }
-const fetchData = () => {
-  transactionList().then((response) => {
-    state.list = response.data.items.slice(0, 8)
-  })
-}
+// const fetchData = () => {
+//   transactionList().then((response) => {
+//     state.list = response.data.items.slice(0, 8)
+//   })
+// }
 //导出属性到页面中使用
 let { list } = toRefs(state)
 </script>
